@@ -1,0 +1,63 @@
+body {
+    font-family: "Verdana", serif;
+    font-size: 10pt;
+    background: #9B9;
+    width: 40em;
+    padding-top: 1em;
+    padding-left: 2em;
+}
+
+
+/* ---------- logo -------------- */
+#logoDiv {
+    font-size: 70pt;
+    font-family: Impact,Georgia,serif;
+    /*letter-spacing: 0.2em;*/
+}
+/* ------------------------------ */
+
+
+/* ---------- input ------------- */
+#homeAddressDiv {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+#homeAddressInp {
+    width: 50%;
+}
+
+.allDestinations {
+    width: 45em;
+    padding-bottom: 1em;
+}
+.address input {
+    width: 25em;
+}
+.note input {
+    width: 20em;
+}
+.note {
+    float: right;
+}
+/* ------------------------------ */
+
+
+/* ----------- results ---------- */
+#resultsDiv {
+    padding-top: 1em;
+    padding-bottom: 2em;
+}
+/* ------------------------------ */
+
+
+/* ----------- buttons ---------- */
+#buttonsHolder{
+}
+#addDestButton {
+}
+#solveButton {
+}
+.removeButton {
+    width:2em !important;
+}
+/* ------------------------------ */

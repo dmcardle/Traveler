@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>EZPath: Optimal Route Calculator</title>
+        
+        <!-------------- Javascript ---------->
+        <script src="js/jquery-1.8.3.js"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script src="js/ezpath-ui.js"></script>
+        <script src="js/tsp.js"></script>
+        
+        <!------------------ CSS -------------->
+        <link rel="stylesheet" type="text/css" href="css/ezpath-ui.css">
+
+        <script>
+            function init() {
+                TSP.init();
+                UI.init();
+            }
+
+            $(document).ready( function() {
+                init();
+
+                // test dist matrix
+                TSP.getDistMatrix();
+            })
+        </script>
+
+    </head>
+    <body>
+        <div id="logoDiv">
+            &larr;EZPath&rarr;
+            TEST
+        </div> 
+        <div>
+            <div id="homeAddressDiv">
+                <div>
+                    Home Address (start and return here)
+                </div>
+                <div>
+                    <input type="text" id="homeAddressInp">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="allDestinations">
+            <div class="destinationBlock">
+                
+                <span class="address">
+                    Destination Address
+                    <input type="text" class="addressInp"> <input class="removeButton" type="button" value="X">
+                </span>
+                <!--
+                <span class="note">
+                    Note
+                    <input type="text" class="noteInp">
+                </span>
+                -->
+            </div>
+        </div>
+        
+        <div>
+            <input id="addDestButton" type="button" value="+">
+        </div>
+
+        <div id="resultsDiv">
+        </div>
+
+        <div>
+            <input id="solveButton" type="button" value="Solve It!">
+        </div>
+    </body>
+</html>
