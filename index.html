@@ -12,6 +12,16 @@
         <link rel="stylesheet" type="text/css" href="css/ezpath-ui.css">
 
         <script>
+
+            // IE fix -------------------------------
+            if (typeof console == "undefined") {
+                window.console = {
+                    log: function() {}
+                };
+            }
+            // --------------------------------------
+
+            
             function init() {
                 TSP.init();
                 UI.init();
@@ -24,46 +34,57 @@
 
     </head>
     <body>
-        <div id="logoDiv">
-            &larr;EZPath&rarr;
-        </div> 
-        <div>
-            <div id="homeAddressDiv">
-                <div>
-                    Home Address (start and return here)
-                </div>
-                <div>
-                    <input type="text" id="homeAddressInp">
+
+
+        <div id="content">
+
+            <div id="logoDiv">
+                &larr;EZPath&rarr;
+            </div> 
+            <div>
+                Mode:
+                <select id="modeSelect">
+                    <option value="duration">Fastest Time</option>
+                    <option value="distance">Shortest Distance</option>
+                </select>
+            </div>
+
+            <div>
+                <div id="homeAddressDiv">
+                    <div>
+                        Home Address (start and return here)
+                    </div>
+                    <div>
+                        <input type="text" id="homeAddressInp">
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="allDestinations">
-            <div class="destinationBlock">
-                
-                <span class="address">
-                    Destination Address
-                    <input type="text" class="addressInp"> <input class="removeButton" type="button" value="X">
-                </span>
-                <!--
-                <span class="note">
-                    Note
-                    <input type="text" class="noteInp">
-                </span>
-                -->
+            <div class="allDestinations">
+                Destinations
+                <input id="addDestButton" type="button" value="add a destination">
+                <div class="destinationBlock">
+                    
+                    <span class="address">
+                        <input type="text" class="addressInp"> <input class="removeButton" type="button" value="remove">
+                    </span>
+                    <!--
+                    <span class="note">
+                        Note
+                        <input type="text" class="noteInp">
+                    </span>
+                    -->
+                </div>
             </div>
-        </div>
-        
-        <div>
-            <input id="addDestButton" type="button" value="+">
-        </div>
+            
 
-        <div id="resultsDiv">
-        </div>
+            <div id="resultsDiv">
+            </div>
 
-        <div>
-            <input id="solveButton" type="button" value="Solve It!">
+            <div>
+                <input id="solveButton" type="button" value="Solve It!">
+            </div>
         </div>
     </body>
 </html>

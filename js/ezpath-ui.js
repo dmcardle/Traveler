@@ -28,8 +28,11 @@ var UI = new function() {
             destinations.push( $(this).val() );
         });
 
+        // determine mode
+        var mode = $("#modeSelect").val();
+
         // solve TSP
-        TSP.getDistMatrix(homeAddress, destinations);
+        TSP.getDistMatrix(homeAddress, destinations, mode);
 
     }
     this.removeThisDestination = function() {

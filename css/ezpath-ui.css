@@ -1,18 +1,34 @@
 body {
     font-family: "Verdana", serif;
     font-size: 10pt;
-    background: #9B9;
-    width: 40em;
-    padding-top: 1em;
-    padding-left: 2em;
+    background: #FEC;
 }
 
+#content {
+    height: 100%;
+    border: 1px solid #DDC;
+    padding-left: 4em;
+    padding-right:4em;
+    margin-top:1em;
+}
+
+#content, #logoDiv {
+    background: #FFF; 
+    
+    /* center it */
+    width: 600px;
+    margin-left:auto;
+    margin-right:auto;
+}
 
 /* ---------- logo -------------- */
 #logoDiv {
     font-size: 70pt;
+    width: 600px;
     font-family: Impact,Georgia,serif;
-    /*letter-spacing: 0.2em;*/
+    color: #333;
+    text-align:center;
+    padding-left: -2em;
 }
 /* ------------------------------ */
 
@@ -23,7 +39,7 @@ body {
     padding-bottom: 2em;
 }
 #homeAddressInp {
-    width: 50%;
+    width: 25em;
 }
 
 .allDestinations {
@@ -58,6 +74,6 @@ body {
 #solveButton {
 }
 .removeButton {
-    width:2em !important;
+    width:8em !important;
 }
 /* ------------------------------ */

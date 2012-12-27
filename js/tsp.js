@@ -7,7 +7,7 @@ var TSP = new function() {
         this.service = new google.maps.DistanceMatrixService();
     }
 
-    this.getDistMatrix = function(homeAddress, destinationAddresses) {
+    this.getDistMatrix = function(homeAddress, destinationAddresses, mode) {
 
         if (typeof(destinationAddresses) !== 'object')
             return;
@@ -44,6 +44,9 @@ var TSP = new function() {
 
             var distMatrix = [];
 
+            console.log("RESPONSE");
+            console.log(response);
+
             if(status=="OK") {
                
                 //orig.value = response.destinationAddresses[0];
@@ -78,8 +81,12 @@ var TSP = new function() {
 
                     // add all the values to this row
                     for (var j=0; j<thisRow.length; j++) {
-                        var dist = thisRow[j].distance.value; 
-                        distMatrix[i].push(dist);
+                        var cost;
+                        if (mode === 'distance') 
+                            cost = thisRow[j].distance.value; 
+                        else if (mode === 'duration') 
+                            cost = thisRow[j].duration.value;
+                        distMatrix[i].push(cost);
                     }
                 }
 
