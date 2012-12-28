@@ -7,7 +7,7 @@ var TSP = new function() {
         this.service = new google.maps.DistanceMatrixService();
     }
 
-    this.getDistMatrix = function(homeAddress, destinationAddresses, mode) {
+    this.getCostMatrix = function(homeAddress, destinationAddresses, mode) {
 
         if (typeof(destinationAddresses) !== 'object')
             return;
@@ -42,7 +42,7 @@ var TSP = new function() {
         // an NxN distance matrix
         function callback(response, status) {
 
-            var distMatrix = [];
+            var costMatrix = [];
 
             console.log("RESPONSE");
             console.log(response);
@@ -77,7 +77,7 @@ var TSP = new function() {
                     var thisRow = respData[i].elements;
                      
                     // add a row to the distMatrix
-                    distMatrix.push( [] );
+                    costMatrix.push( [] );
 
                     // add all the values to this row
                     for (var j=0; j<thisRow.length; j++) {
@@ -86,12 +86,12 @@ var TSP = new function() {
                             cost = thisRow[j].distance.value; 
                         else if (mode === 'duration') 
                             cost = thisRow[j].duration.value;
-                        distMatrix[i].push(cost);
+                        costMatrix[i].push(cost);
                     }
                 }
 
                 // solve the TSP
-                var tspAnswer = TSP.solveTSP( distMatrix );
+                var tspAnswer = TSP.solveTSP( costMatrix );
                 var path = tspAnswer.circuit;
                 var cost = tspAnswer.cost;
 
@@ -109,7 +109,12 @@ var TSP = new function() {
                 }
                 
                 // write into #resultsDiv the cost of this path
-                var resultsHtml = "This path takes <b>" + cost + "</b> meters";
+                var resultsHtml = "This path takes <b>" + cost + "</b>";
+                if (mode === 'distance') {
+                    resultsHtml += 'meters';
+                } else if (mode === 'duration') {
+                    resultsHtml += 'seconds';
+                }
                 resultsHtml += "<br>";
                 resultsHtml += "<a href='http://maps.google.com/maps?saddr="+TSP.places[0];
                 for (var i=1; i<path.length; i++) {
