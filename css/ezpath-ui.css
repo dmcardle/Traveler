@@ -21,7 +21,7 @@ body {
     margin-right:auto;
 }
 
-/* ---------- logo -------------- */
+
 #logoDiv {
     font-size: 70pt;
     width: 600px;
@@ -30,7 +30,15 @@ body {
     text-align:center;
     padding-left: -2em;
 }
-/* ------------------------------ */
+
+#description {
+    padding-left: 6em;
+    padding-right: 6em;
+    padding-bottom: 2em;
+    font-style: italic;
+}
+
+
 
 
 /* ---------- input ------------- */

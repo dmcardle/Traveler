@@ -109,14 +109,7 @@ var TSP = new function() {
                 }
                 
                 // write into #resultsDiv the cost of this path
-                var resultsHtml = "This path takes <b>" + cost + "</b> ";
-                if (mode === 'distance') {
-                    resultsHtml += 'meters';
-                } else if (mode === 'duration') {
-                    resultsHtml += 'seconds';
-                }
-                resultsHtml += "<br>";
-                resultsHtml += "<a href='http://maps.google.com/maps?saddr="+TSP.places[0];
+                var resultsHtml = "<li class='mapLink'><a href='http://maps.google.com/maps?saddr="+TSP.places[0];
                 for (var i=1; i<path.length; i++) {
                     if (i==1)
                         resultsHtml += "&daddr=" + TSP.places[path[i]] + "";
@@ -125,8 +118,13 @@ var TSP = new function() {
                 }
                 resultsHtml += "+to:" + TSP.places[0];
                 resultsHtml += "'>Map It!</a>";
+                resultsHtml += "</li>";
 
-                $("#resultsDiv").html(resultsHtml);
+                // remove old map link
+                $(".mapLink").remove();
+
+                // add link to map
+                $("#stepsList").append(resultsHtml);
                                
             } else {
                 alert("Error: " + status);

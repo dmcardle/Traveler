@@ -37,10 +37,24 @@
 
 
         <div id="content">
-
             <div id="logoDiv">
                 &larr;EZPath&rarr;
             </div> 
+            <div id="description">
+                <p>
+                    EZPath helps you find the shortest way to travel between a set of destinations.
+                </p>
+                <p>
+                    All you have to do is
+                    <ol>
+                        <li>Enter where you would like to start and return to</li>
+                        <li>Enter each address you would like to travel to</li>
+                        <li>Click "Solve It!"</li>
+                        <li>Click the link to your map</li>
+                    </ol> 
+                </p>
+            </div>
+
             <div>
                 Mode:
                 <select id="modeSelect">
@@ -49,42 +63,46 @@
                 </select>
             </div>
 
-            <div>
-                <div id="homeAddressDiv">
+            <ol id="stepsList">
+                <li>
                     <div>
-                        Home Address (start and return here)
+                        <div id="homeAddressDiv">
+                            <div>
+                                Home Address (start and return here)
+                            </div>
+                            <div>
+                                <input type="text" id="homeAddressInp">
+                            </div>
+                        </div>
                     </div>
+                </li>
+
+                <li>
+                    <div class="allDestinations">
+                        Destinations
+                        <input id="addDestButton" type="button" value="add a destination">
+                        <div class="destinationBlock">
+                            
+                            <span class="address">
+                                <input type="text" class="addressInp"> <input class="removeButton" type="button" value="remove">
+                            </span>
+                            <!--
+                            <span class="note">
+                                Note
+                                <input type="text" class="noteInp">
+                            </span>
+                            -->
+                        </div>
+                    </div>
+                 </li> 
+
+
+                <li>
                     <div>
-                        <input type="text" id="homeAddressInp">
+                        <input id="solveButton" type="button" value="Solve It!">
                     </div>
-                </div>
-            </div>
-
-
-            <div class="allDestinations">
-                Destinations
-                <input id="addDestButton" type="button" value="add a destination">
-                <div class="destinationBlock">
-                    
-                    <span class="address">
-                        <input type="text" class="addressInp"> <input class="removeButton" type="button" value="remove">
-                    </span>
-                    <!--
-                    <span class="note">
-                        Note
-                        <input type="text" class="noteInp">
-                    </span>
-                    -->
-                </div>
-            </div>
-            
-
-            <div id="resultsDiv">
-            </div>
-
-            <div>
-                <input id="solveButton" type="button" value="Solve It!">
-            </div>
+                </li>
+            </ol>
         </div>
     </body>
 </html>
