@@ -67,9 +67,8 @@ body {
 
 
 /* ----------- results ---------- */
-#resultsDiv {
-    padding-top: 1em;
-    padding-bottom: 2em;
+.mapLink {
+    color: gray;
 }
 /* ------------------------------ */
 
