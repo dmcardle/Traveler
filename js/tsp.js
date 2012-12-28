@@ -109,7 +109,7 @@ var TSP = new function() {
                 }
                 
                 // write into #resultsDiv the cost of this path
-                var resultsHtml = "This path takes <b>" + cost + "</b>";
+                var resultsHtml = "This path takes <b>" + cost + "</b> ";
                 if (mode === 'distance') {
                     resultsHtml += 'meters';
                 } else if (mode === 'duration') {
