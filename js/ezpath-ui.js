@@ -9,14 +9,18 @@ var UI = new function() {
         this.addNewDest();
     }
     this.addNewDest = function() {
-        // copy the first destination block
-        var newDestBlock = $(".destinationBlock").first().clone();
+        var count = $(".destinationBlock").length;
 
-        // set all inputs' values to ""
-        $(newDestBlock).find("input:not(.removeButton)").val("");
+        if (count < 10) {
+            // copy the first destination block
+            var newDestBlock = $(".destinationBlock").first().clone();
 
-        // add the new destination block to the bottom
-        $(".allDestinations").append( newDestBlock );
+            // set all inputs' values to ""
+            $(newDestBlock).find("input:not(.removeButton)").val("");
+
+            // add the new destination block to the bottom
+            $(".allDestinations").append( newDestBlock );
+        }
     }
     this.solveTSP = function() {
         // get home address
