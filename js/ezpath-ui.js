@@ -32,7 +32,7 @@ var UI = new function() {
         var mode = $("#modeSelect").val();
 
         // solve TSP
-        TSP.getDistMatrix(homeAddress, destinations, mode);
+        TSP.getCostMatrix(homeAddress, destinations, mode);
 
     }
     this.removeThisDestination = function() {
