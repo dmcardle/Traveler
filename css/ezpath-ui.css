@@ -1,11 +1,13 @@
 body {
     font-family: "Verdana", serif;
     font-size: 10pt;
-    background: #FEC;
+    background-image: url("../res/img/grass-background.jpg");
+    background-repeat: repeat-x;
 }
 
 #content {
-    border: 1px solid #DDC;
+    /*border: 1px solid #DDC;*/
+    border-radius: 15px;
     padding-left: 4em;
     padding-right:4em;
     padding-bottom: 2em;
@@ -13,7 +15,7 @@ body {
 }
 
 #content, #logoDiv {
-    background: #FFF; 
+    background-image: url("../res/img/grass-background-blurry.jpg");
     
     /* center it */
     width: 600px;
@@ -26,7 +28,7 @@ body {
     font-size: 70pt;
     width: 600px;
     font-family: Impact,Georgia,serif;
-    color: #333;
+    color: #433;
     text-align:center;
     padding-left: -2em;
 }
@@ -68,7 +70,7 @@ body {
 
 /* ----------- results ---------- */
 .mapLink {
-    color: gray;
+    color: green;
 }
 /* ------------------------------ */
 
