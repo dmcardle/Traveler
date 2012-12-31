@@ -16,7 +16,6 @@ body {
 
 #content {
     float:left;
-    margin-left: 100px;
 }
 
 #adsDiv {
@@ -33,14 +32,17 @@ h2 {
     font-family: Verdana,serif;
 }
 
+#content {
 
+    min-width: 600px;
+    width: 60%;
+}
 
 #content, #adsDiv {
     /*background-image: url("../res/img/grass-background-blurry.jpg");
     */
     background-color:rgba(255, 255, 255, 0.6);
     /* center it */
-    width: 600px;
     margin-left:auto;
     margin-right:auto;
 }
