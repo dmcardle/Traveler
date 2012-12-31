@@ -5,7 +5,7 @@ body {
     background-repeat: repeat-x;
 }
 
-#content {
+#content, #adsDiv {
     /*border: 1px solid #DDC;*/
     border-radius: 15px;
     padding-left: 4em;
@@ -14,9 +14,31 @@ body {
     margin-top:1em;
 }
 
-#content, #logoDiv {
-    background-image: url("../res/img/grass-background-blurry.jpg");
-    
+#content {
+    float:left;
+    margin-left: 100px;
+}
+
+#adsDiv {
+    width: 150px !important;
+    float:right;
+}
+
+#adsDiv * {
+    float:right;
+}
+
+h2 {
+    font-size: 13pt;
+    font-family: Verdana,serif;
+}
+
+
+
+#content, #adsDiv {
+    /*background-image: url("../res/img/grass-background-blurry.jpg");
+    */
+    background-color:rgba(255, 255, 255, 0.6);
     /* center it */
     width: 600px;
     margin-left:auto;
@@ -39,7 +61,6 @@ body {
     padding-bottom: 2em;
     font-style: italic;
 }
-
 
 
 
