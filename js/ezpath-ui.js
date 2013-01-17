@@ -1,7 +1,8 @@
 var UI = new function() {
     this.init = function() {
         $("#addDestButton").on('click', this.addNewDest);
-        $("#solveButton").on('click', this.solveTSP);
+        $("#lookupButton").on('click', this.lookupAddresses);
+        $("#solveButton").on('click', this.actuallySolveTSP);
         $(".removeButton").live('click', this.removeThisDestination);
 
         // leave the page with a total of two addresses -- otherwise, what is
@@ -22,7 +23,14 @@ var UI = new function() {
             $(".allDestinations").append( newDestBlock );
         }
     }
-    this.solveTSP = function() {
+
+    this.lookupAddresses = function() {
+        UI.solveTSP(UI.rewriteAddresses);
+    }
+    this.actuallySolveTSP = function() {
+        UI.solveTSP(TSP.handleResponse);
+    }
+    this.solveTSP = function(whichCallback) {
         // get home address
         var homeAddress = $("#homeAddressInp").val();
         
@@ -33,13 +41,33 @@ var UI = new function() {
         });
 
         // determine mode
-        var mode = $("#modeSelect").val();
+        TSP.mode = $("#modeSelect").val();
+        
 
         // solve TSP
-        TSP.getCostMatrix(homeAddress, destinations, mode);
+        TSP.getCostMatrix(homeAddress, destinations, whichCallback);
+    }
+
+    this.rewriteAddresses = function(response, status) {
+
+        var respData;
+        var destinationElements = $(".addressInp");
+        respData = response.originAddresses;
+        for (var i=0; i<respData.length; i++) {
+            TSP.places[i] = respData[i];
+
+            if (i === 0) {
+                $("#homeAddressInp").val( respData[i] );   
+            }
+            else {
+                $(destinationElements[i-1]).val( respData[i] );
+            }
+        }
 
     }
+
     this.removeThisDestination = function() {
+
         // count the destination addresses
         var count = $(".destinationBlock").length;
         

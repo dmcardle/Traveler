@@ -5,9 +5,10 @@ var TSP = new function() {
     this.init = function() {
         this.places = [];
         this.service = new google.maps.DistanceMatrixService();
+        this.mode = '';
     }
 
-    this.getCostMatrix = function(homeAddress, destinationAddresses, mode) {
+    this.getCostMatrix = function(homeAddress, destinationAddresses, callback) {
 
         if (typeof(destinationAddresses) !== 'object')
             return;
@@ -38,102 +39,89 @@ var TSP = new function() {
             callback
         );
 
-        // parses the results of the distance matrix from google maps, creates
-        // an NxN distance matrix
-        function callback(response, status) {
-
-            var costMatrix = [];
-
-            console.log("RESPONSE");
-            console.log(response);
-
-            if(status=="OK") {
-               
-                //orig.value = response.destinationAddresses[0];
-                //dest.value = response.originAddresses[0];
-                //dist.value = response.rows[0].elements[0].distance.text;
-                
-                var respData;
-                
-
-                var destinationElements = $(".addressInp");
-                respData = response.originAddresses;
-                for (var i=0; i<respData.length; i++) {
-                    TSP.places[i] = respData[i];
-
-                    if (i === 0) {
-                        $("#homeAddressInp").val( respData[i] );   
-                    }
-                    else {
-                        $(destinationElements[i-1]).val( respData[i] );
-                    }
-                }
-                
-                
-                // create an NxN distance matrix
-                respData = response.rows;
-                for (var i=0; i<respData.length; i++ ){
-                  
-                    var thisRow = respData[i].elements;
-                     
-                    // add a row to the distMatrix
-                    costMatrix.push( [] );
-
-                    // add all the values to this row
-                    for (var j=0; j<thisRow.length; j++) {
-                        var cost;
-                        if (mode === 'distance') 
-                            cost = thisRow[j].distance.value; 
-                        else if (mode === 'duration') 
-                            cost = thisRow[j].duration.value;
-                        costMatrix[i].push(cost);
-                    }
-                }
-
-                // solve the TSP
-                var tspAnswer = TSP.solveTSP( costMatrix );
-                var path = tspAnswer.circuit;
-                var cost = tspAnswer.cost;
-
-                // output the best path with its names
-                console.log("BEST PATH:");
-                for (var i=0; i<path.length; i++) {
-                    console.log(TSP.places[path[i]]);
-                }
-
-                // rewrite the names of the destinations in the correct order
-                var addressInps = $(".addressInp");
-                for (var i=0; i<addressInps.length; i++) {
-                    // i+1 since we aren't going to reorder dest #1 which is home
-                    $(addressInps[i]).val( TSP.places[path[i+1]] );
-                }
-                
-                // write into #resultsDiv the cost of this path
-                var resultsHtml = "<li class='mapLink'><a href='http://maps.google.com/maps?saddr="+TSP.places[0];
-                for (var i=1; i<path.length; i++) {
-                    if (i==1)
-                        resultsHtml += "&daddr=" + TSP.places[path[i]] + "";
-                    else
-                        resultsHtml += "+to:" + TSP.places[path[i]];
-                }
-                resultsHtml += "+to:" + TSP.places[0];
-                resultsHtml += "'>Map It!</a>";
-                resultsHtml += "</li>";
-
-                // remove old map link
-                $(".mapLink").remove();
-
-                // add link to map
-                $("#stepsList").append(resultsHtml);
-                               
-            } else {
-                alert("Error: " + status);
-            }
-        }
-
     }
 
 
+    // parses the results of the distance matrix from google maps, creates
+    // an NxN distance matrix
+    this.handleResponse = function(response, status) {
+
+        var costMatrix = [];
+
+        console.log("RESPONSE");
+        console.log(response);
+
+        if(status=="OK") {
+
+            //orig.value = response.destinationAddresses[0];
+            //dest.value = response.originAddresses[0];
+            //dist.value = response.rows[0].elements[0].distance.text;
+
+            UI.rewriteAddresses(response, status);
+
+            var respData;
+            // create an NxN distance matrix
+            respData = response.rows;
+            for (var i=0; i<respData.length; i++ ){
+
+                var thisRow = respData[i].elements;
+
+                // add a row to the distMatrix
+                costMatrix.push( [] );
+
+                // add all the values to this row
+                for (var j=0; j<thisRow.length; j++) {
+                    var cost;
+                    if (TSP.mode === 'distance') 
+                        cost = thisRow[j].distance.value; 
+                    else if (TSP.mode === 'duration') 
+                        cost = thisRow[j].duration.value;
+                    costMatrix[i].push(cost);
+                }
+            }
+
+            // solve the TSP
+            var tspAnswer = TSP.solveTSP( costMatrix );
+            var path = tspAnswer.circuit;
+            var cost = tspAnswer.cost;
+
+            // output the best path with its names
+            console.log("BEST PATH:");
+            for (var i=0; i<path.length; i++) {
+                console.log(TSP.places[path[i]]);
+            }
+
+            // rewrite the names of the destinations in the correct order
+            var addressInps = $(".addressInp");
+            for (var i=0; i<addressInps.length; i++) {
+                // i+1 since we aren't going to reorder dest #1 which is home
+                $(addressInps[i]).val( TSP.places[path[i+1]] );
+            }
+
+            // write into #resultsDiv the cost of this path
+            var resultsHtml = "<li class='mapLink'><a href='http://maps.google.com/maps?saddr="+TSP.places[0];
+            for (var i=1; i<path.length; i++) {
+                if (i==1)
+                    resultsHtml += "&daddr=" + TSP.places[path[i]] + "";
+                else
+                    resultsHtml += "+to:" + TSP.places[path[i]];
+            }
+            resultsHtml += "+to:" + TSP.places[0];
+            resultsHtml += "'>Map It!</a>";
+            resultsHtml += "</li>";
+
+            // remove old map link
+            $(".mapLink").remove();
+
+            // add link to map
+            $("#stepsList").append(resultsHtml);
+
+        } else {
+            alert("Error: " + status);
+        }
+    }
+
+    
     // actually solves the traveling salesman problem
     this.solveTSP = function( distMatrix ) {
        
