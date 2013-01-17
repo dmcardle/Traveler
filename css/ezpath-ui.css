@@ -40,6 +40,7 @@ h2 {
 #content, #adsDiv {
     /*background-image: url("../res/img/grass-background-blurry.jpg");
     */
+    background-color: #fff;
     background-color:rgba(255, 255, 255, 0.8);
     /* center it */
     margin-left:auto;
