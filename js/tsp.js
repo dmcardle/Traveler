@@ -71,12 +71,21 @@ var TSP = new function() {
 
                 // add all the values to this row
                 for (var j=0; j<thisRow.length; j++) {
-                    var cost;
-                    if (TSP.mode === 'distance') 
-                        cost = thisRow[j].distance.value; 
-                    else if (TSP.mode === 'duration') 
-                        cost = thisRow[j].duration.value;
-                    costMatrix[i].push(cost);
+                    
+                    if (thisRow[j].status === "OK") {
+                        var cost;
+                        if (TSP.mode === 'distance') 
+                            cost = thisRow[j].distance.value; 
+                        else if (TSP.mode === 'duration') 
+                            cost = thisRow[j].duration.value;
+                        costMatrix[i].push(cost);
+                    } else {
+                        $("#errorsDiv").css({height: 0}).html("<p>Check that all your home address and all destinations are reachable by car.</p>").animate({height: '2em'});
+                        $("#errorsDiv").delay(4000).animate( {height: 0}, 400, 'swing', function() {
+                            $("#errorsDiv").html('');
+                        });
+                        return;
+                    }
                 }
             }
 
