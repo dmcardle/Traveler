@@ -41,7 +41,7 @@ var UI = new function() {
         });
 
         // determine mode
-        TSP.mode = $("#modeSelect").val();
+        TSP.mode = $("#modeSelectDiv input[name=mode]:checked").val();
         
 
         // solve TSP

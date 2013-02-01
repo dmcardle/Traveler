@@ -2,11 +2,7 @@ body {
     font-family: "Verdana", serif;
     font-size: 10pt;
     height:100%;
-    background-color: #320;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#222222'); /* for IE */
-    background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#222)); /* for webkit browsers */
-    background: -moz-linear-gradient(top,  #000,  #222); /* for firefox 3.6+ */
-    background-repeat: repeat-x;
+    background-color: #222222;
 }
 
 #content, #adsDiv {
@@ -43,13 +39,23 @@ h2 {
 #content {
     min-width: 600px;
     width: 60%;
+    color: #8F8;
+}
+
+#content input {
+    background-color: #222;
+    border-color: #000;
+    color: #BFB;
+}
+
+#content #modeSelectDiv {
+    padding-left:3em;
 }
 
 #content, #adsDiv {
     /*background-image: url("../res/img/grass-background-blurry.jpg");
     */
-    background-color: #fff;
-    background-color:rgba(255, 255, 255, 0.8);
+    background-color: #333;
     /* center it */
     margin-left:auto;
     margin-right:auto;
@@ -57,7 +63,7 @@ h2 {
 
 
 #logoDiv, #adsDiv {
-    color: #482700;
+    color: #FFF;
 }
 #logoDiv {
     font-size: 70pt;
@@ -66,12 +72,17 @@ h2 {
     text-align:center;
     padding-left: -2em;
 }
+#logoDiv #subtitle {
+    color: #DDD;
+    font-size: 20pt;
+}
 
 #description {
     padding-left: 6em;
     padding-right: 6em;
     padding-bottom: 2em;
-    font-style: italic;
+    /*font-style: italic;*/
+    color:#DDD;
 }
 
 
@@ -103,7 +114,7 @@ h2 {
 
 /* ----------- results ---------- */
 .mapLink {
-    color: green;
+    color: #F66;
 }
 /* ------------------------------ */
 

@@ -20,15 +20,10 @@
                 };
             }
             // --------------------------------------
-
             
-            function init() {
-                TSP.init();
-                UI.init();
-            }
-
             $(document).ready( function() {
-                init();
+                UI.init();
+                TSP.init();
             });
         </script>
 
@@ -38,12 +33,13 @@
 
         <div id="content">
             <div id="logoDiv">
-                &larr;EZPath&rarr;
+                EZPath
+
+                <div id="subtitle">
+                    ( the fastest way to travel )
+                </div>
             </div> 
             <div id="description">
-                <p>
-                    EZPath helps you find the shortest way to travel between a set of destinations.
-                </p>
                 <p>
                     All you have to do is
                     <ol>
@@ -60,12 +56,20 @@
             </div>
 
 
-            <div>
+            <div id="modeSelectDiv">
                 Mode:
+                <!--
                 <select id="modeSelect">
                     <option value="duration">Fastest Time</option>
                     <option value="distance">Shortest Distance</option>
                 </select>
+                -->
+                <div>
+                    <input type="radio" name="mode" value="duration" checked> Fastest Time<br>
+                </div>
+                <div>
+                    <input type="radio" name="mode" value="distance"> Shortest Distance
+                </div>
             </div>
 
             <ol id="stepsList">
