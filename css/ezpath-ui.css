@@ -39,7 +39,7 @@ h2 {
 #content {
     min-width: 600px;
     width: 60%;
-    color: #8F8;
+    color: #FFF;
 }
 
 #content input {
@@ -66,11 +66,12 @@ h2 {
     color: #FFF;
 }
 #logoDiv {
+    margin-left:auto;
+    margin-right:auto;
     font-size: 70pt;
     width: 600px;
     font-family: Impact,Georgia,serif;
     text-align:center;
-    padding-left: -2em;
 }
 #logoDiv #subtitle {
     color: #DDD;
@@ -78,9 +79,6 @@ h2 {
 }
 
 #description {
-    padding-left: 6em;
-    padding-right: 6em;
-    padding-bottom: 2em;
     /*font-style: italic;*/
     color:#DDD;
 }
